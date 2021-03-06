@@ -1,0 +1,9 @@
+translations:
+  warp_added: "Warp added correctly! (If you added a permission you need to reload the server!)"
+  warp_removed: "Warp removed correctly!"
+  warp_already_exist: "A warp with this name already exist!"
+  warp_dont_exist: "A warp with name {name} don't exist."
+  warp_used: "Successfully teleported to {name}"
+  warp_cooldown: "You have this warp in cooldown."
+  warp_error: "You don't have permission or this warp don't exist."
+  no_warps: "Any warps are defined."

@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
+    <PackageTags>openmod openmod-plugin unturned</PackageTags>
+    <RootNamespace>SimpleWarps</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateNugetPackage>true</GenerateNugetPackage>
+    <Product>SimpleWarps</Product>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <NoWarn>$(NoWarn);NU1701;NU1702;CS0436</NoWarn>
+    <LangVersion>9.0</LangVersion>
+    <Version>3.0.18+d771a28</Version>
+    <InformationalVersion>3.0.18+d771a28</InformationalVersion>
+    <PackageVersion>3.0.18+d771a28</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>SS.SimpleWarps</PackageId>
+    <PackageDescription>A simple plugin to add warps with permissions and cooldowns.</PackageDescription>
+    <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
+    <PackageAuthor>SeniorS</PackageAuthor>
+    <PackageTags>openmod openmod-plugin unturned</PackageTags>
+    <Version>0.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateNugetPackage>true</GenerateNugetPackage>  
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="OpenMod.Unturned" Version="3.0.18+d771a28" />
+    <PackageReference Include="Legacy2CPSWorkaround" Version="1.0.0">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net461" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="config.yaml" />
+    <EmbeddedResource Include="translations.yaml" />
+  </ItemGroup>
+
+  <Target Name="ChangeAliasesOfNugetRefs" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+    </ItemGroup>
+  </Target>
+
+</Project>
