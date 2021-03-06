@@ -15,10 +15,10 @@ jobs:
       name: Checkout Repository
       with:
         fetch-depth: 0
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 5.0.x
     - name: Install dependencies
       run: dotnet restore
     - name: Update version
@@ -30,6 +30,6 @@ jobs:
     - name: Build
       run: dotnet build SimpleWarps.csproj --configuration Release --no-restore
     - name: Push to NuGet
-      run: dotnet nuget push bin/Release/*.nupkg
+      run: dotnet nuget push bin/Debug/*.nupkg
              --api-key ${{ secrets.NUGET_DEPLOY_KEY }}
              --source https://api.nuget.org/v3/index.json
