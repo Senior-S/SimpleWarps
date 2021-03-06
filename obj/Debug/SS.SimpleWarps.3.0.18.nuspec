@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SS.SimpleWarps</id>
+    <version>3.0.18+d771a28</version>
+    <authors>SimpleWarps</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">EUPL-1.2</license>
+    <licenseUrl>https://licenses.nuget.org/EUPL-1.2</licenseUrl>
+    <description>A simple plugin to add warps with permissions and cooldowns.</description>
+    <tags>openmod openmod-plugin unturned</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="OpenMod.Unturned" version="3.0.18" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Copia de seguridad\Plugins\OpenModPlugins\SimpleWarps\bin\Debug\net461\SimpleWarps.dll" target="lib\net461\SimpleWarps.dll" />
+  </files>
+</package>

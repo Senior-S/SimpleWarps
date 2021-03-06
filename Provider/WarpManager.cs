@@ -21,7 +21,7 @@ namespace SimpleWarps.Provider
 
         public Task<bool> CheckWarpCooldown(string name, ulong ownerId);
 
-        public Task<bool> UseWarp(string name, ulong ownerId);
+        public Task<bool> UseWarp(string name, ulong ownerId, UnturnedUser user);
 
         public Task<bool> CheckPermission(string name, UnturnedUser user);
 
@@ -104,7 +104,7 @@ namespace SimpleWarps.Provider
             
         }
 
-        public async Task<bool> UseWarp(string name, ulong ownerId)
+        public async Task<bool> UseWarp(string name, ulong ownerId, UnturnedUser user)
         {
             await ReadData();
             await UniTask.SwitchToMainThread();
@@ -114,12 +114,19 @@ namespace SimpleWarps.Provider
                 var warp = m_WarpsCache.Where(k => k.Name.ToLower() == name.ToLower()).FirstOrDefault();
                 if (warp != null)
                 {
+                    await user.PrintMessageAsync("You will be teleport in 3 seconds.");
+                    await UniTask.Delay(TimeSpan.FromSeconds(1));
+                    await user.PrintMessageAsync("You will be teleport in 2 seconds.");
+                    await UniTask.Delay(TimeSpan.FromSeconds(1));
+
                     var cooldown = m_CooldownsCache.Where(cc => cc.SteamId == ownerId).First().warpCooldowns;
                     var warpCooldown = cooldown.Where(wp => wp.WarpName.ToLower() == name.ToLower()).FirstOrDefault();
                     if (warpCooldown == null) cooldown.Add(new WarpCooldown { WarpName = name, LastUsed = DateTime.Now });
                     else warpCooldown.LastUsed = DateTime.Now;
 
                     player.teleportToLocationUnsafe(new UnityEngine.Vector3(warp.Position.X, warp.Position.Y, warp.Position.Z), player.look.yaw);
+
+                    
 
                     await SaveAsync();
 

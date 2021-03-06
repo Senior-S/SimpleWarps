@@ -29,7 +29,7 @@ namespace SimpleWarps.Commands
             {
                 if (await m_WarpManager.CheckWarpCooldown(warpName, ulong.Parse(user.SteamId.ToString())))
                 {
-                    await m_WarpManager.UseWarp(warpName, ulong.Parse(user.SteamId.ToString()));
+                    await m_WarpManager.UseWarp(warpName, ulong.Parse(user.SteamId.ToString()), user);
                     await user.PrintMessageAsync(m_StringLocalizer["translations:warp_used", new { name = warpName }]);
                 }
                 else
