@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleWarps")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3.0.18+d771a28")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleWarps")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleWarps")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("0.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
 

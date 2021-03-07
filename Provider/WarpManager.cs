@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using OpenMod.API.Ioc;
 using OpenMod.API.Plugins;
 using OpenMod.Unturned.Users;
@@ -35,10 +36,16 @@ namespace SimpleWarps.Provider
         private List<User> m_CooldownsCache = new List<User>();
         
         private readonly IPluginAccessor<SimpleWarps> m_PluginAccessor;
+        private readonly IConfiguration m_Configuration;
 
-        public WarpManager(IPluginAccessor<SimpleWarps> pluginAccessor)
+        public WarpManager(IPluginAccessor<SimpleWarps> pluginAccessor, IConfiguration configuration)
         {
             m_PluginAccessor = pluginAccessor;
+            if (pluginAccessor.Instance != null)
+            {
+                m_Configuration = pluginAccessor.Instance.Configuration;
+            }
+            m_Configuration = configuration;
         }
 
         public async Task<bool> TryAddWarp(string name, Vector3 position, string perm = "", int cooldown = 0)
@@ -114,10 +121,8 @@ namespace SimpleWarps.Provider
                 var warp = m_WarpsCache.Where(k => k.Name.ToLower() == name.ToLower()).FirstOrDefault();
                 if (warp != null)
                 {
-                    await user.PrintMessageAsync("You will be teleport in 3 seconds.");
-                    await UniTask.Delay(TimeSpan.FromSeconds(1));
-                    await user.PrintMessageAsync("You will be teleport in 2 seconds.");
-                    await UniTask.Delay(TimeSpan.FromSeconds(1));
+                    await user.PrintMessageAsync($"You will be teleport in {m_Configuration.GetSection("config:teleport_delay").Get<int>()} seconds.");
+                    await UniTask.Delay(TimeSpan.FromSeconds(m_Configuration.GetSection("config:teleport_delay").Get<int>()));
 
                     var cooldown = m_CooldownsCache.Where(cc => cc.SteamId == ownerId).First().warpCooldowns;
                     var warpCooldown = cooldown.Where(wp => wp.WarpName.ToLower() == name.ToLower()).FirstOrDefault();
